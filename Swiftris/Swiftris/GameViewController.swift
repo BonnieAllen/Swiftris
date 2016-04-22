@@ -14,9 +14,11 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     var scene: GameScene!
     var swiftris:Swiftris!
     var timerDisplay: TimerDisplay!
-    var gameTimer: NSTimer!
+    var gameTimer: NSTimer?
+    
+    
     var defaultTimer: Int = 5
-
+    
     //    #1
     var panPointReference:CGPoint?
     
@@ -39,10 +41,11 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         
         swiftris = Swiftris()
         swiftris.delegate = self
+        setupTimer()
         swiftris.beginGame()
         
-        setupTimer()
-
+        
+        
         
         // Present the scene.
         skView.presentScene(scene)
@@ -122,11 +125,15 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         }
     }
     func gameDidBegin(swiftris: Swiftris) {
+        
+        if defaultTimer > 0 {
+            startTimer()
+        }
+        
         levelLabel.text = "\(swiftris.level)"
         scoreLabel.text = "\(swiftris.score)"
         scene.tickLengthMillis = TickLengthLevelOne
         
-        // The following is false when restarting a new game
         if swiftris.nextShape != nil && swiftris.nextShape!.blocks[0].sprite == nil {
             scene.addPreviewShapeToScene(swiftris.nextShape!) {
                 self.nextShape()
@@ -134,21 +141,25 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         } else {
             nextShape()
         }
-}
+    }
+    
+    
     func gameDidEnd(swiftris: Swiftris) {
         view.userInteractionEnabled = false
         scene.stopTicking()
         scene.playSound("gameover.mp3")
-        scene.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: Array<Array<Block>>()) {
-            swiftris.beginGame()
-            
-            if self.defaultTimer > 0 {
-                self.stopTimer()
-            }
-        }
-
-    }
+        
     
+        
+        if defaultTimer > 0 {
+            stopTimer()
+        }
+        
+        scene.animateCollapsingLines(swiftris.removeAllBlocks(), fallenBlocks: Array<Array<Block>>()) {
+           
+        }
+    }
+
     func gameDidLevelUp(swiftris: Swiftris) {
         levelLabel.text = "\(swiftris.level)"
         if scene.tickLengthMillis >= 100 {
@@ -158,7 +169,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         }
         scene.playSound("levelup.mp3")
         
-}
+    }
     func gameShapeDidDrop(swiftris: Swiftris) {
         // #7
         scene.stopTicking()
@@ -166,7 +177,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             swiftris.letShapeFall()
         }
         scene.playSound("drop.mp3")
-    
+        
     }
     
     func gameShapeDidLand(swiftris: Swiftris) {
@@ -198,11 +209,20 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     }
     
     func startTimer() {
-        NSRunLoop.mainRunLoop().addTimer(self.gameTimer, forMode: NSRunLoopCommonModes)
+        if let timer = self.gameTimer {
+            NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+            
+            
+        } else {
+            print("timer is nil!")
+        }
+        
     }
     
     func stopTimer() {
-        self.gameTimer.invalidate()
+        if let timer = self.gameTimer {
+            timer.invalidate()
+        }
     }
     
     func updateCurrentTimeLeft() {
@@ -219,16 +239,10 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         gameTypeLabel.text = timeLeftString
     }
     
-
+    
     
     // #17
     func gameShapeDidMove(swiftris: Swiftris) {
         scene.redrawShape(swiftris.fallingShape!) {}
     }
 }
-
-
-
-
-
-
