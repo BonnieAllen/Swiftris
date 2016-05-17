@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import GameKit
 
-class MainMenuViewController: UIViewController {
+class MainMenuViewController: UIViewController, GKGameCenterControllerDelegate {
+    
+//    var achievements : [GKAchievements]?
     
     
     override func viewDidLoad() {
@@ -26,7 +29,30 @@ class MainMenuViewController: UIViewController {
             viewController.defaultTimer = 0
         }
     }
+    //MARK: Game Center Implementation of Achievements
+
     
+    @IBAction func leaderboardButtonPressed(sender: UIButton) {
+        showLeaderBoard()
+    }
+
+    
+    func showLeaderBoard() {
+        let gameCenterVC = GKGameCenterViewController()
+        gameCenterVC.gameCenterDelegate = self
+        gameCenterVC.viewState = GKGameCenterViewControllerState.Leaderboards
+        gameCenterVC.leaderboardTimeScope = GKLeaderboardTimeScope.AllTime
+        gameCenterVC.leaderboardIdentifier = "topScores"
+        self.presentViewController(gameCenterVC, animated: true, completion: nil)
+        
+    }
+    
+    //MARK: GameCenterViewControllerDelegate Methods
+    
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
 
     /*
     // MARK: - Navigation

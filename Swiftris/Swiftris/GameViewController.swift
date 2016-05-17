@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+import GameKit 
 
 class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognizerDelegate {
     
@@ -43,7 +44,6 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         swiftris.delegate = self
         setupTimer()
         swiftris.beginGame()
-        
         
         
         
@@ -245,4 +245,33 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     func gameShapeDidMove(swiftris: Swiftris) {
         scene.redrawShape(swiftris.fallingShape!) {}
     }
+    
+    
+    
+    //MARK: GameCenter Implementation
+    func reportScoresToGameCenter() {
+        if GKLocalPlayer.localPlayer().authenticated {
+            let gkScore = GKScore(leaderboardIdentifier: "topScores")
+            gkScore.value = Int64(swiftris.score)
+            GKScore.reportScores([gkScore]) { (error) -> Void in
+                if (error != nil) {
+                    print("Error reporting scores: \(error!.description)")
+                } else {
+                    print("Top Score of \(gkScore.value) reported successfully to Game Center")
+                }
+            }
+        }
+    }
+    
+    func recordAchievements() {
+        
+        print("Attempting to update achievements: \(achievements)")
+        
+        GKAchievement.reportAchievements(achievements) { (error) -> Void in
+            if (error != nil) {
+                print("Error updating achievements: \(error?.description)")
+            }
+        }
+    }
+
 }

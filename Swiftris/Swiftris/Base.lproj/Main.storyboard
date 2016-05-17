@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JUC-qZ-FnU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JUC-qZ-FnU">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -29,6 +29,14 @@
                                 <state key="normal" title="Timed Game"/>
                                 <connections>
                                     <segue destination="BV1-FR-VrT" kind="show" identifier="timedGameSegue" id="sO7-a3-mve"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qna-X1-7qu">
+                                <rect key="frame" x="273" y="445" width="55" height="30"/>
+                                <state key="normal" title="Leaders"/>
+                                <connections>
+                                    <action selector="achievementButtonPressed" destination="JUC-qZ-FnU" eventType="touchUpInside" id="WMb-qL-Lxi"/>
+                                    <action selector="leaderboardButtonPressed:" destination="JUC-qZ-FnU" eventType="touchUpInside" id="K0c-fE-ZKu"/>
                                 </connections>
                             </button>
                         </subviews>
