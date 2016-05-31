@@ -11,7 +11,7 @@ import GameKit
 
 class MainMenuViewController: UIViewController, GKGameCenterControllerDelegate {
     
-//    var achievements : [GKAchievements]?
+        var achievements : [GKAchievement]?
     
     
     override func viewDidLoad() {
@@ -22,6 +22,10 @@ class MainMenuViewController: UIViewController, GKGameCenterControllerDelegate {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let viewController: GameViewController = (segue.destinationViewController as? GameViewController)!
+        if self.achievements != nil {
+            viewController.achievements = self.achievements!
+        }
+
         
         if (segue.identifier == "timedGameSegue") {
             viewController.defaultTimer = 120
@@ -29,7 +33,24 @@ class MainMenuViewController: UIViewController, GKGameCenterControllerDelegate {
             viewController.defaultTimer = 0
         }
     }
-    //MARK: Game Center Implementation of Achievements
+    
+    func authenticateGameCenter(completion: (() -> Void)?) {
+        let localPlayer = GKLocalPlayer.localPlayer()
+        localPlayer.authenticateHandler = {(viewController, error) -> Void in
+            if ((viewController) != nil) {
+                self.presentViewController(viewController!, animated: true, completion: nil)
+            } else {
+                print("(GameCenter) Player Authenticated: \(GKLocalPlayer.localPlayer().authenticated)")
+                if let completion = completion {
+                    completion()
+                }
+            }
+        }
+    }
+    
+
+    
+    //MARK: Game Center Implementation of Leaderboard
 
     
     @IBAction func leaderboardButtonPressed(sender: UIButton) {
@@ -46,6 +67,23 @@ class MainMenuViewController: UIViewController, GKGameCenterControllerDelegate {
         self.presentViewController(gameCenterVC, animated: true, completion: nil)
         
     }
+    
+    //MARK: Game Center Implementation of Achievements
+
+    
+    @IBAction func achievementsButton() {
+        showAchievements()
+    }
+    
+    func showAchievements () {
+        let gameCenterVC = GKGameCenterViewController()
+        gameCenterVC.gameCenterDelegate = self
+        gameCenterVC.viewState = GKGameCenterViewControllerState.Achievements
+        self.presentViewController(gameCenterVC, animated: true, completion: nil)
+        
+    }
+    
+    
     
     //MARK: GameCenterViewControllerDelegate Methods
     

@@ -16,7 +16,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     var swiftris:Swiftris!
     var timerDisplay: TimerDisplay!
     var gameTimer: NSTimer?
-    
+    var achievements: [GKAchievement] = []
     
     var defaultTimer: Int = 5
     
@@ -249,6 +249,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     
     
     //MARK: GameCenter Implementation
+    
     func reportScoresToGameCenter() {
         if GKLocalPlayer.localPlayer().authenticated {
             let gkScore = GKScore(leaderboardIdentifier: "topScores")

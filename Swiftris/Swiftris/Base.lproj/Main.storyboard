@@ -18,25 +18,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPz-Lc-1Ey">
-                                <rect key="frame" x="251" y="338" width="98" height="30"/>
+                                <rect key="frame" x="326" y="285" width="98" height="30"/>
                                 <state key="normal" title="Endless Game"/>
                                 <connections>
                                     <segue destination="BV1-FR-VrT" kind="show" identifier="endlessGameSegue" id="JLr-lN-l2n"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brl-mj-qpC">
-                                <rect key="frame" x="256" y="226" width="88" height="30"/>
+                                <rect key="frame" x="211" y="285" width="88" height="30"/>
                                 <state key="normal" title="Timed Game"/>
                                 <connections>
                                     <segue destination="BV1-FR-VrT" kind="show" identifier="timedGameSegue" id="sO7-a3-mve"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qna-X1-7qu">
-                                <rect key="frame" x="273" y="445" width="55" height="30"/>
+                                <rect key="frame" x="228" y="359" width="55" height="30"/>
                                 <state key="normal" title="Leaders"/>
                                 <connections>
                                     <action selector="achievementButtonPressed" destination="JUC-qZ-FnU" eventType="touchUpInside" id="WMb-qL-Lxi"/>
                                     <action selector="leaderboardButtonPressed:" destination="JUC-qZ-FnU" eventType="touchUpInside" id="K0c-fE-ZKu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RbN-57-4GV">
+                                <rect key="frame" x="327" y="359" width="97" height="30"/>
+                                <state key="normal" title="Achievements"/>
+                                <connections>
+                                    <action selector="achievementButton:" destination="JUC-qZ-FnU" eventType="touchUpInside" id="JNs-UK-CEv"/>
+                                    <action selector="achievementsButton" destination="JUC-qZ-FnU" eventType="touchUpInside" id="juC-Sy-fkm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -45,7 +53,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5YT-95-Oyp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-676" y="-263"/>
+            <point key="canvasLocation" x="-750" y="-263"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
