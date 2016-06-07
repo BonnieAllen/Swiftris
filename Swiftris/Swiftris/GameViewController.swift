@@ -12,6 +12,7 @@ import GameKit
 
 class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognizerDelegate {
     
+    var skView: SKView!
     var scene: GameScene!
     var swiftris:Swiftris!
     var timerDisplay: TimerDisplay!
@@ -31,12 +32,13 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         super.viewDidLoad()
         
         // Configure the view.
-        let skView = view as! SKView
-        skView.multipleTouchEnabled = false
+        skView = view as! SKView
+        skView.multipleTouchEnabled = false;
         
         // Create and configure the scene.
         scene = GameScene(size: skView.bounds.size)
         scene.scaleMode = .AspectFill
+        
         // #13
         scene.tick = didTick
         
@@ -48,8 +50,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         
         
         // Present the scene.
-        skView.presentScene(scene)
-        
+//        skView.presentScene(scene)
         
     }
     
