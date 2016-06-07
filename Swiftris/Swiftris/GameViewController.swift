@@ -50,7 +50,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         
         
         // Present the scene.
-//        skView.presentScene(scene)
+        skView.presentScene(scene)
         
     }
     
