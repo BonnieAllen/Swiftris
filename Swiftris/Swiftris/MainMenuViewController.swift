@@ -70,7 +70,6 @@ class MainMenuViewController: UIViewController, GKGameCenterControllerDelegate {
     
     //MARK: Game Center Implementation of Achievements
 
-    
     @IBAction func achievementsButton() {
         showAchievements()
     }
