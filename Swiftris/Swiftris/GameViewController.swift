@@ -34,6 +34,40 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         // Configure the view.
         skView = view as! SKView
         skView.multipleTouchEnabled = false;
+        skView.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction
+        skView.isAccessibilityElement = true
+        
+        if skView.isAccessibilityElement {
+            skView.accessibilityLabel = "Play Timed Game"
+            skView.accessibilityHint = "Play a game against the clock"
+        }
+        
+        scoreLabel.multipleTouchEnabled = false;
+        scoreLabel.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction
+        scoreLabel.isAccessibilityElement = true
+        
+        if scoreLabel.isAccessibilityElement {
+            scoreLabel.accessibilityLabel = "Score Label"
+            scoreLabel.accessibilityHint = "Display Score"
+        }
+        
+        levelLabel.multipleTouchEnabled = false;
+        levelLabel.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction
+        levelLabel.isAccessibilityElement = true
+        
+        if levelLabel.isAccessibilityElement {
+            levelLabel.accessibilityLabel = "Level Label"
+            levelLabel.accessibilityHint = "Track each level you complete"
+        }
+        
+        gameTypeLabel.multipleTouchEnabled = false;
+        gameTypeLabel.accessibilityTraits = UIAccessibilityTraitAllowsDirectInteraction
+        gameTypeLabel.isAccessibilityElement = true
+        
+        if gameTypeLabel.isAccessibilityElement {
+            gameTypeLabel.accessibilityLabel = "Play Timed Game"
+            gameTypeLabel.accessibilityHint = "Play a game against the clock"
+        }
         
         // Create and configure the scene.
         scene = GameScene(size: skView.bounds.size)
