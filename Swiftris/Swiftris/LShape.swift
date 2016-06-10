@@ -55,4 +55,9 @@ class LShape:Shape {
             Orientation.TwoSeventy: [blocks[FirstBlockIdx], blocks[SecondBlockIdx], blocks[ThirdBlockIdx]]
         ]
     }
+    
+    // #1 announcing L shapes
+    override func verbalDescription() -> String {
+        return "This is a L shape"
+    }
 }

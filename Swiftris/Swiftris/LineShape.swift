@@ -42,4 +42,9 @@ class LineShape:Shape {
             Orientation.TwoSeventy: blocks
         ]
     }
+    
+    // #1 announcing line shapes
+    override func verbalDescription() -> String {
+        return "This is a line shape"
+    }
 }

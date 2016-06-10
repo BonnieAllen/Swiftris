@@ -52,4 +52,9 @@ class SShape:Shape {
             Orientation.TwoSeventy: [blocks[FirstBlockIdx], blocks[ThirdBlockIdx], blocks[FourthBlockIdx]]
         ]
     }
+    
+    // #1 announcing S shapes
+    override func verbalDescription() -> String {
+        return "This is a S shape"
+    }
 }

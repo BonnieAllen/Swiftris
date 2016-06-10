@@ -174,7 +174,7 @@ final func initializeBlocks() {
             self.row = row
             rotateBlocks(orientation)
         }
-        
+        // #1 announcing shapes
         func verbalDescription() -> String {
             return "this is a shape"
         }

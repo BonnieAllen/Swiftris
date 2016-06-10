@@ -54,4 +54,9 @@ class JShape:Shape {
             Orientation.TwoSeventy: [blocks[FirstBlockIdx], blocks[SecondBlockIdx], blocks[FourthBlockIdx]]
         ]
     }
+    
+    // #1 announcing J shapes
+    override func verbalDescription() -> String {
+        return "This is a J shape"
+    }
 }

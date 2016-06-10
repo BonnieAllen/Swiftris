@@ -53,4 +53,9 @@ class ZShape:Shape {
             Orientation.TwoSeventy: [blocks[FirstBlockIdx], blocks[ThirdBlockIdx], blocks[FourthBlockIdx]]
         ]
     }
+    
+    // #1 announcing Z shapes
+    override func verbalDescription() -> String {
+        return "This is a Z shape"
+    }
 }
