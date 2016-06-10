@@ -130,6 +130,7 @@ final func initializeBlocks() {
             }
         }
         
+        
         // #3
         final func rotateClockwise() {
             let newOrientation = Orientation.rotate(orientation, clockwise: true)
@@ -174,6 +175,10 @@ final func initializeBlocks() {
             rotateBlocks(orientation)
         }
         
+        func verbalDescription() -> String {
+            return "this is a shape"
+        }
+
         final class func random(startingColumn:Int, startingRow:Int) -> Shape {
             switch Int(arc4random_uniform(NumShapeTypes)) {
                 // #4
@@ -193,8 +198,10 @@ final func initializeBlocks() {
                 return ZShape(column:startingColumn, row:startingRow)
             }
         }
+    
 
 }
+
 
 func ==(lhs: Shape, rhs: Shape) -> Bool {
     return lhs.row == rhs.row && lhs.column == rhs.column
