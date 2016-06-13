@@ -174,9 +174,10 @@ final func initializeBlocks() {
             self.row = row
             rotateBlocks(orientation)
         }
-        // #1 announcing shapes
-        func verbalDescription() -> String {
-            return "this is a shape"
+        
+        func voiceStatusChanged() {
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification,
+                                         "");
         }
 
         final class func random(startingColumn:Int, startingRow:Int) -> Shape {
@@ -198,8 +199,6 @@ final func initializeBlocks() {
                 return ZShape(column:startingColumn, row:startingRow)
             }
         }
-    
-
 }
 
 

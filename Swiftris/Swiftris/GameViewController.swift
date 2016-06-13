@@ -69,6 +69,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             gameTypeLabel.accessibilityHint = "Play a game against the clock"
         }
         
+        
         // Create and configure the scene.
         scene = GameScene(size: skView.bounds.size)
         scene.scaleMode = .AspectFill
@@ -157,6 +158,11 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             // #16
             self.view.userInteractionEnabled = true
             self.scene.startTicking()
+        }
+        
+        if (UIAccessibilityIsVoiceOverRunning()) {
+            
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "")
         }
     }
     func gameDidBegin(swiftris: Swiftris) {
@@ -262,7 +268,7 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
     
     func updateCurrentTimeLeft() {
         if timerDisplay.timeInSeconds >= 1 {
-            timerDisplay.timeInSeconds--
+            timerDisplay.timeInSeconds -= 1
             updateTimeLabel(timerDisplay.timeAsString())
         } else {
             updateTimeLabel("Game Over")
@@ -309,5 +315,11 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             }
         }
     }
-
+    
+    func voiceStatusChanged () {
+        if (UIAccessibilityIsVoiceOverRunning()) {
+            
+        }
+        
+    }
 }
