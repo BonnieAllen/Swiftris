@@ -54,7 +54,7 @@ class SShape:Shape {
     }
     
     // #1 announcing S shapes
-    override func verbalDescription() -> String {
+     override func verbalDescription() -> String {
         return "This is a S shape"
     }
 }

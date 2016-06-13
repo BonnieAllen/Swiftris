@@ -216,6 +216,12 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
         scene.stopTicking()
         scene.redrawShape(swiftris.fallingShape!) {
             swiftris.letShapeFall()
+            
+            if (UIAccessibilityIsVoiceOverRunning()) {
+                
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "Landed")
+            }
+
         }
         scene.playSound("drop.mp3")
         
@@ -231,6 +237,12 @@ class GameViewController: UIViewController, SwiftrisDelegate, UIGestureRecognize
             scene.animateCollapsingLines(removedLines.linesRemoved, fallenBlocks:removedLines.fallenBlocks) {
                 // #11
                 self.gameShapeDidLand(swiftris)
+                
+                if (UIAccessibilityIsVoiceOverRunning()) {
+                    
+                    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, "A row has been completed!")
+                }
+
             }
             scene.playSound("bomb.mp3")
         } else {

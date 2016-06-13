@@ -175,10 +175,11 @@ final func initializeBlocks() {
             rotateBlocks(orientation)
         }
         
-        func voiceStatusChanged() {
+        func verbalDescription() -> String {
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification,
-                                         "");
-        }
+                                            "");
+            return ""}
+
 
         final class func random(startingColumn:Int, startingRow:Int) -> Shape {
             switch Int(arc4random_uniform(NumShapeTypes)) {

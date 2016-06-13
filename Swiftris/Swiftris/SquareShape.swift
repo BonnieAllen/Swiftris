@@ -39,7 +39,7 @@ class SquareShape:Shape {
     }
     
     // #1 announcing square shapes
-    override func verbalDescription() -> String {
+     override func verbalDescription() -> String {
         return "This is a square shape"
     }
 }
